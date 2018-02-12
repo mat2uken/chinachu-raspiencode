@@ -14,7 +14,6 @@ import base64
 
 
 def encode(message):
-    logger.debug(message.body)
     try:
         body = base64.b64decode(message.body)
         data = json.loads(body.decode('utf-8'))
@@ -23,7 +22,7 @@ def encode(message):
         message.delete()
         return
 
-    logger.debug(json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True, separators=(',', ': ')))
+#    logger.debug(json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True, separators=(',', ': ')))
 
     (ipath, opath) = ffmpeg.transform_path(data["recorded"])
     ffmpeg.ffmpeg(ipath, opath)
