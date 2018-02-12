@@ -26,7 +26,7 @@ def ffmpeg(input_filename, output_filename):
     res = subprocess.run(["ffmpeg", "-y", "-i", "{}".format(input_filename),
                           "-fflags", "+discardcorrupt", "-c:v", "mpeg2_mmal",
                           "-c:a", "copy", "-bsf:a", "aac_adtstoasc",
-                          "-c:v", "h264_omx", "-b:v", "5000k",
+                          "-c:v", "h264_omx", "-b:v", "5000k", "-threads", "4",
                           "{}".format(output_filename)
                          ])
     logger.debug(res)
